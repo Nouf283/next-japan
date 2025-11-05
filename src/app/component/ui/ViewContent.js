@@ -1,9 +1,22 @@
-"use client";
-import { ArrowLeft, Calendar, File, Folder, MoreVertical, User } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+'use client';
+import {
+  ArrowLeft,
+  Calendar,
+  File,
+  Folder,
+  MoreVertical,
+  User,
+} from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
-export default function ViewContent({ viewMode = "list", onFolderOpen, currentPath = [], onBackToParent, onAddNewSheet }) {
+export default function ViewContent({
+  viewMode = 'list',
+  onFolderOpen,
+  currentPath = [],
+  onBackToParent,
+  onAddNewSheet,
+}) {
   const [currentFolder, setCurrentFolder] = useState(null);
   const router = useRouter();
 
@@ -11,76 +24,86 @@ export default function ViewContent({ viewMode = "list", onFolderOpen, currentPa
   const yearFolders = [
     {
       id: 1,
-      name: "2018",
-      type: "folder",
-      modified: "2024-01-15",
-      owner: "John Doe",
-      description: "2018 data and documents"
+      name: '2018',
+      type: 'folder',
+      modified: '2024-01-15',
+      owner: 'John Doe',
+      description: '2018 data and documents',
     },
     {
       id: 2,
-      name: "2019",
-      type: "folder",
-      modified: "2024-01-10",
-      owner: "Jane Smith",
-      description: "2019 data and documents"
+      name: '2019',
+      type: 'folder',
+      modified: '2024-01-10',
+      owner: 'Jane Smith',
+      description: '2019 data and documents',
     },
     {
       id: 3,
-      name: "2020",
-      type: "folder",
-      modified: "2024-01-08",
-      owner: "Mike Johnson",
-      description: "2020 data and documents"
+      name: '2020',
+      type: 'folder',
+      modified: '2024-01-08',
+      owner: 'Mike Johnson',
+      description: '2020 data and documents',
     },
     {
       id: 4,
-      name: "2021",
-      type: "folder",
-      modified: "2024-01-12",
-      owner: "Sarah Wilson",
-      description: "2021 data and documents"
+      name: '2021',
+      type: 'folder',
+      modified: '2024-01-12',
+      owner: 'Sarah Wilson',
+      description: '2021 data and documents',
     },
     {
       id: 5,
-      name: "2022",
-      type: "folder",
-      modified: "2024-01-05",
-      owner: "Alex Brown",
-      description: "2022 data and documents"
+      name: '2022',
+      type: 'folder',
+      modified: '2024-01-05',
+      owner: 'Alex Brown',
+      description: '2022 data and documents',
     },
     {
       id: 6,
-      name: "2023",
-      type: "folder",
-      modified: "2024-01-14",
-      owner: "David Lee",
-      description: "2023 data and documents"
+      name: '2023',
+      type: 'folder',
+      modified: '2024-01-14',
+      owner: 'David Lee',
+      description: '2023 data and documents',
     },
     {
       id: 7,
-      name: "2024",
-      type: "folder",
-      modified: "2024-01-20",
-      owner: "Emily Chen",
-      description: "2024 data and documents"
+      name: '2024',
+      type: 'folder',
+      modified: '2024-01-20',
+      owner: 'Emily Chen',
+      description: '2024 data and documents',
     },
     {
       id: 8,
-      name: "2025",
-      type: "folder",
-      modified: "2024-01-22",
-      owner: "Tom Wilson",
-      description: "2025 data and documents"
-    }
+      name: '2025',
+      type: 'folder',
+      modified: '2024-01-22',
+      owner: 'Tom Wilson',
+      description: '2026 data and documents',
+    },
   ];
 
   const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
 
-  const handleFolderClick = (folder) => {
+  const handleFolderClick = folder => {
     setCurrentFolder(folder);
     if (onFolderOpen) {
       onFolderOpen(folder);
@@ -94,7 +117,7 @@ export default function ViewContent({ viewMode = "list", onFolderOpen, currentPa
     }
   };
 
-  const handleSheetClick = (month) => {
+  const handleSheetClick = month => {
     if (currentFolder) {
       const slug = `${currentFolder.name}-${month}`;
       router.push(`/features-3/Year/${slug}`);
@@ -111,18 +134,18 @@ export default function ViewContent({ viewMode = "list", onFolderOpen, currentPa
     const monthSheets = months.map((month, index) => ({
       id: index + 1,
       name: month,
-      type: "file",
-      modified: "2024-01-15",
-      owner: currentFolder?.owner || "Unknown",
+      type: 'file',
+      modified: '2024-01-15',
+      owner: currentFolder?.owner || 'Unknown',
       description: `${month} sheet for ${currentFolder?.name}`,
-      sheetType: "spreadsheet"
+      sheetType: 'spreadsheet',
     }));
 
     switch (viewMode) {
-      case "grid":
+      case 'grid':
         return (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {monthSheets.map((sheet) => (
+            {monthSheets.map(sheet => (
               <div
                 key={sheet.id}
                 className="flex flex-col items-center p-4 bg-white dark:bg-neutral-800 rounded-lg border border-gray-200 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-700 transition-colors cursor-pointer text-center"
@@ -140,10 +163,10 @@ export default function ViewContent({ viewMode = "list", onFolderOpen, currentPa
           </div>
         );
 
-      case "list-info":
+      case 'list-info':
         return (
           <div className="space-y-3">
-            {monthSheets.map((sheet) => (
+            {monthSheets.map(sheet => (
               <div
                 key={sheet.id}
                 className="p-4 bg-white dark:bg-neutral-800 rounded-lg border border-gray-200 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-700 transition-colors cursor-pointer"
@@ -186,7 +209,7 @@ export default function ViewContent({ viewMode = "list", onFolderOpen, currentPa
       default: // list view
         return (
           <div className="space-y-2">
-            {monthSheets.map((sheet) => (
+            {monthSheets.map(sheet => (
               <div
                 key={sheet.id}
                 className="flex items-center p-3 bg-white dark:bg-neutral-800 rounded-lg border border-gray-200 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-700 transition-colors cursor-pointer"
@@ -216,10 +239,10 @@ export default function ViewContent({ viewMode = "list", onFolderOpen, currentPa
 
   const renderYearFolders = () => {
     switch (viewMode) {
-      case "grid":
+      case 'grid':
         return (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {yearFolders.map((item) => (
+            {yearFolders.map(item => (
               <div
                 key={item.id}
                 className="flex flex-col items-center p-4 bg-white dark:bg-neutral-800 rounded-lg border border-gray-200 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-700 transition-colors cursor-pointer text-center"
@@ -237,10 +260,10 @@ export default function ViewContent({ viewMode = "list", onFolderOpen, currentPa
           </div>
         );
 
-      case "list-info":
+      case 'list-info':
         return (
           <div className="space-y-3">
-            {yearFolders.map((item) => (
+            {yearFolders.map(item => (
               <div
                 key={item.id}
                 className="p-4 bg-white dark:bg-neutral-800 rounded-lg border border-gray-200 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-700 transition-colors cursor-pointer"
@@ -280,7 +303,7 @@ export default function ViewContent({ viewMode = "list", onFolderOpen, currentPa
       default: // list view
         return (
           <div className="space-y-2">
-            {yearFolders.map((item) => (
+            {yearFolders.map(item => (
               <div
                 key={item.id}
                 className="flex items-center p-3 bg-white dark:bg-neutral-800 rounded-lg border border-gray-200 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-700 transition-colors cursor-pointer"
@@ -322,7 +345,6 @@ export default function ViewContent({ viewMode = "list", onFolderOpen, currentPa
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
               {currentFolder.name} - Monthly Sheets
             </h2>
-            
           </div>
         </div>
 
@@ -334,4 +356,4 @@ export default function ViewContent({ viewMode = "list", onFolderOpen, currentPa
 
   // Show year folders
   return renderYearFolders();
-} 
+}
